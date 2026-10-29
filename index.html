@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jack´s Burger Delivery – Vranov nad Topľou | Burgre, pizza, donáška</title>
+  <meta name="description" content="Jack´s Burger Delivery vo Vranove nad Topľou – domáce burgre z hovädzieho mäsa, pizza 36 cm, minútky a donáška až domov. Objednávky: 0951 473 213.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jack´s Burger Delivery – Vranov nad Topľou">
+  <meta property="og:description" content="Domáce burgre, pizza 36 cm a donáška po prvé dvere. Objednávky: 0951 473 213.">
+  <meta property="og:image" content="assets/og.jpg">
+  <meta property="og:locale" content="sk_SK">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Jack´s Burger Delivery",
+    "telephone": "+421951473213",
+    "email": "jacksburgerdelivery@gmail.com",
+    "servesCuisine": ["Burgre", "Pizza"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Mlynská 1798",
+      "addressLocality": "Vranov nad Topľou",
+      "postalCode": "093 01",
+      "addressCountry": "SK"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday"], "opens": "15:00", "closes": "20:45" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Thursday"], "opens": "11:00", "closes": "20:45" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "11:00", "closes": "21:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "12:00", "closes": "21:30" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#menu">Preskočiť na menu</a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__in">
+      <a href="#top" class="brand" aria-label="Jack´s Burger Delivery – domov">
+        <img src="assets/logo.png" alt="Jack´s Burger Delivery" width="120" height="46">
+      </a>
+      <nav class="links" id="links" aria-label="Hlavná navigácia">
+        <a href="#menu">Menu</a>
+        <a href="#donaska">Donáška</a>
+        <a href="#info">Otváracia doba</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a class="btn btn--sm btn--call" href="tel:+421951473213">📞 <span>0951 473 213</span></a>
+      <button class="burger-btn" id="burgerBtn" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero__in">
+        <p class="eyebrow">Vranov nad Topľou · donáška a osobný odber</p>
+        <h1>Šťavnaté burgre.<br><em>Chrumkavá pizza.</em><br>Až k vašim dverám.</h1>
+        <p class="lead">100% hovädzie mäso KRAVA &amp; CO, domáce žemle a domáce omáčky. Objednajte telefonicky a doručíme vám to po prvé dvere.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="tel:+421951473213">Objednať: 0951 473 213</a>
+          <a class="btn btn--ghost" href="#menu">Pozrieť menu</a>
+        </div>
+        <div class="status" id="status" role="status" aria-live="polite">
+          <span class="dot"></span><span id="statusText">Kontrolujem otváraciu dobu…</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="strip" aria-label="Naše výhody">
+      <div class="wrap strip__in">
+        <div><strong>🥩 100 % hovädzie</strong><span>mäso KRAVA &amp; CO</span></div>
+        <div><strong>🍞 Domáce žemle</strong><span>a domáce omáčky</span></div>
+        <div><strong>🍕 Pizza 36 cm</strong><span>21 druhov</span></div>
+        <div><strong>🛵 Donáška</strong><span>po prvé dvere</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="wrap">
+        <h2 class="title">Menu</h2>
+        <p class="sub">Ceny sú uvedené v eurách vrátane DPH.</p>
+
+        <div class="tabs" role="tablist" aria-label="Kategórie menu" id="tabs"></div>
+        <div class="search">
+          <label class="sr" for="q">Hľadať v menu</label>
+          <input id="q" type="search" placeholder="Hľadať v menu (napr. hermelín, slanina…)" autocomplete="off">
+        </div>
+
+        <div id="menuOut" class="menu-out" aria-live="polite"></div>
+        <noscript><p class="note">Pre zobrazenie menu povoľte JavaScript, alebo nám zavolajte na 0951 473 213.</p></noscript>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="donaska">
+      <div class="wrap">
+        <h2 class="title">Donáška</h2>
+        <p class="sub">Naša prevádzka funguje iba formou rozvozu alebo osobného odberu. Donáška je po prvé dvere.</p>
+        <div class="zones" id="zones"></div>
+        <ul class="ticks">
+          <li>Čakacia doba pri rozvoze v rámci mesta je orientačne do 60 minút. Ak sa predĺži, upozorníme vás vopred.</li>
+          <li>Do okolitých dedín, cez víkendy a sviatky sa o čakacej dobe informujte vopred.</li>
+          <li>Objednávky na vopred určený čas a miesto hláste minimálne 2 hodiny vopred.</li>
+          <li>Objednávku je možné zrušiť do 10 minút od objednania.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="info">
+      <div class="wrap grid2">
+        <div class="card">
+          <h2 class="title title--sm">Otváracia doba</h2>
+          <table class="hours" id="hours"></table>
+        </div>
+        <div class="card">
+          <h2 class="title title--sm">Spôsoby platby</h2>
+          <ul class="ticks ticks--tight">
+            <li>Hotovosťou</li>
+            <li>Stravnými lístkami</li>
+            <li>Platobným terminálom</li>
+          </ul>
+          <p class="warn">Stravné karty neprijímame.</p>
+          <p class="small">Pri platbe v hotovosti si prosím pripravte presnú sumu, donáškar nie vždy má drobné. Za finančné rozdiely zistené mimo pokladne prevádzky alebo kasy donáškara nezodpovedáme.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="kontakt">
+      <div class="wrap grid2">
+        <div>
+          <h2 class="title">Kontakt</h2>
+          <p class="sub">Tešíme sa na vašu objednávku.</p>
+          <ul class="contact">
+            <li><span>📞</span><a href="tel:+421951473213">+421 951 473 213</a></li>
+            <li><span>✉️</span><a href="mailto:jacksburgerdelivery@gmail.com">jacksburgerdelivery@gmail.com</a></li>
+            <li><span>📍</span><address>Jack´s Burger<br>Mlynská 1798<br>093 01 Vranov nad Topľou</address></li>
+          </ul>
+          <a class="btn btn--primary" href="tel:+421951473213">Zavolať a objednať</a>
+        </div>
+        <div class="map">
+          <iframe title="Mapa – Mlynská 1798, Vranov nad Topľou" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Mlynsk%C3%A1+1798,+Vranov+nad+Top%C4%BEou&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <img src="assets/logo.png" alt="" width="110" height="43">
+      <p>Prevádzka: Jack´s Burger, Mlynská 1798, Vranov nad Topľou, 093 01 · +421 951 473 213</p>
+      <p class="small">Obchodné meno: Jack´s Burger Delivery s.r.o. · Sídlo: Čičava 105, 093 01 Vranov nad Topľou<br>
+        IČO: 53048652 · DIČ: 2121237932 · IČ DPH: SK2121237932<br>
+        Zapísaná v obchodnom registri, oddiel: s.r.o., vložka číslo: 40167/P, deň zápisu: 22.04.2020</p>
+      <p class="small">© <span id="year"></span> Jack´s Burger Delivery s.r.o. · Alkohol nepredávame osobám mladším ako 18 rokov.</p>
+    </div>
+  </footer>
+
+  <a class="fab" href="tel:+421951473213" aria-label="Zavolať a objednať">📞 Objednať</a>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
