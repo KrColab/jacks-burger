@@ -19,6 +19,35 @@ const ANNOUNCEMENT = {
   closable: true
 };
 
+/* =====================================================================
+   ALERGÉNY (14 hlavných alergénov podľa nariadenia EÚ č. 1169/2011)
+   ---------------------------------------------------------------------
+   Pri každej položke menu pridaj pole `al` s číslami alergénov, napr.:
+     { name: "Oklahoma", price: 10.5, desc: "...", al: [1, 3, 7, 10] }
+   Čísla sa zobrazia pri jedle ako „Alergény: 1, 3, 7, 10“.
+   Položky bez poľa `al` nezobrazia nič – vypĺňaj ho podľa receptúr
+   a údajov od dodávateľov (žemľa, omáčky, syry, obaly, olej…).
+   ===================================================================== */
+const ALLERGEN_LIST = {
+  1: "Obilniny obsahujúce lepok (pšenica, raž, jačmeň, ovos)",
+  2: "Kôrovce",
+  3: "Vajcia",
+  4: "Ryby",
+  5: "Arašidy",
+  6: "Sójové zrná (sója)",
+  7: "Mlieko (vrátane laktózy)",
+  8: "Orechy (mandle, lieskové, vlašské, kešu, pekanové, para, pistácie, makadamové)",
+  9: "Zeler",
+  10: "Horčica",
+  11: "Sezamové semená",
+  12: "Oxid siričitý a siričitany",
+  13: "Lupina",
+  14: "Mäkkýše"
+};
+const ALLERGEN_NOTE =
+  "Jedlá pripravujeme v kuchyni, kde sa spracúvajú všetky uvedené alergény, preto nevieme úplne vylúčiť stopové množstvá. " +
+  "Ak máte alergiu alebo intoleranciu, upozornite nás pri objednávke na 0951 473 213.";
+
 /* Dáta prevzaté z https://www.jacksburger.sk – úpravy cien/položiek rob len tu. */
 const MENU = {
   burger: {
@@ -27,7 +56,7 @@ const MENU = {
     menuExtra: 3.0,
     menuInfo: "Burger menu = burger + 160 g crispers hranolky, 3 ks cibuľové krúžky a omáčka",
     items: [
-      { name: "Tennessee", price: 9.5, desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, 120 g grilovaný hermelín, brusnicová omáčka, volské oko, rukola" },
+      { name: "Tennessee", price: 9.5, tag: "Vegetariánsky", desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, 120 g grilovaný hermelín, brusnicová omáčka, volské oko, rukola" },
       { name: "Florida", price: 10.0, desc: "Domáca žemľa, domáca horčicovo-medová omáčka, lolo šalát, domáca karamelizovaná červená cibuľa, paradajka, 150 g marinovaný kurací steak, cheddar, grilovaný ananás", tag: "Kuracie" },
       { name: "Oklahoma", price: 10.5, desc: "Domáca žemľa, sriracha mayo, ľadový šalát, červená cibuľa, 160 g mleté hovädzie mäso, cheddar, slaninka" },
       { name: "New York", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, paradajka, kyslá uhorka, rukola, domáca horčicovo-medová mayo" },
@@ -38,7 +67,7 @@ const MENU = {
       { name: "Ohio", price: 10.5, desc: "Domáca žemľa, cesnaková omáčka, rukola, 2× domáca slanina, 160 g mleté hovädzie KRAVA&CO, cheddar, brusnicová omáčka, hranolky" },
       { name: "Jack Daniel´s", price: 10.5, desc: "Domáca žemľa, poľníček, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca karamelizovaná červená cibuľka, volské oko, domáca slanina, rukola, originál BBQ omáčka JACK DANIEĹS" },
       { name: "Nevada", price: 14.0, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, 2× 160 g mleté hovädzie KRAVA&CO, 2× cheddar, 4× domáca slanina, volské oko, majonéza", tag: "Double" },
-      { name: "Vermont", price: 14.0, desc: "Domáca žemľa, domáca cesnaková omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, 4× domáca slanina, grilovaný hermelín, brusnicová omáčka, majonéza" }
+      { name: "Vermont", price: 14.0, desc: "Domáca žemľa, domáca cesnaková omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, 4× domáca slanina, grilovaný hermelín, brusnicová omáčka, majonéza", tag: "Double" }
     ],
     footer: "Omáčky na výber: BBQ, horčicovo-medová, čili, sweet čili, cesnaková, majonéza, brusnicová, kečup, tatárska"
   },

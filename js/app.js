@@ -80,14 +80,21 @@
   function itemHTML(it, cat, idx, numbered) {
     const menuLine = cat.menuExtra
       ? `<div class="item__menu">Menu <b>${eur(it.price + cat.menuExtra)}</b> <span class="small">(+${eur(cat.menuExtra)})</span></div>` : "";
+    const tagList = it.tag ? [].concat(it.tag) : [];
+    const tags = tagList.length
+      ? `<div class="item__tags">${tagList.map((t) => `<span class="tag${/vegetari/i.test(t) ? " tag--veg" : ""}">${esc(t)}</span>`).join("")}</div>` : "";
+    const al = Array.isArray(it.al) && it.al.length
+      ? `<div class="item__al" title="${esc(it.al.map((n) => n + " – " + (ALLERGEN_LIST[n] || "")).join("; "))}">Alergény: <b>${it.al.join(", ")}</b></div>` : "";
     return `
       <article class="item">
         <div class="item__top">
-          <h3 class="item__name">${numbered ? `<span class="item__num">${idx + 1}.</span>` : ""}${esc(it.name)}${it.tag ? `<span class="tag">${esc(it.tag)}</span>` : ""}</h3>
+          <h3 class="item__name">${numbered ? `<span class="item__num">${idx + 1}.</span>` : ""}${esc(it.name)}</h3>
           <span class="item__price">${eur(it.price)}</span>
         </div>
+        ${tags}
         ${it.desc ? `<p class="item__desc">${esc(it.desc)}</p>` : ""}
         ${menuLine}
+        ${al}
       </article>`;
   }
 
@@ -124,6 +131,11 @@
     out.innerHTML = html;
   }
 
+  function scrollToMenuTop() {
+    const t = $("#menu .title");
+    if (t) t.scrollIntoView({ block: "start" }); // plynulosť a odsadenie od lišty riadi CSS (scroll-behavior, scroll-padding-top)
+  }
+
   function bindTabs() {
     const tabs = $("#tabs");
     tabs.addEventListener("click", (e) => {
@@ -133,6 +145,7 @@
       $("#q").value = "";
       renderTabs();
       render();
+      scrollToMenuTop();
     });
     tabs.addEventListener("keydown", (e) => {
       if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
@@ -153,6 +166,17 @@
       btn.setAttribute("aria-expanded", String(open));
     });
     links.addEventListener("click", (e) => { if (e.target.tagName === "A") close(); });
+  }
+
+  /* ---------- Alergény ---------- */
+  function renderAllergens() {
+    if (typeof ALLERGEN_LIST === "undefined") { $("#allergens").hidden = true; return; }
+    $("#allergens").innerHTML = `
+      <summary>Alergény – zoznam a upozornenie</summary>
+      <div class="allergens__body">
+        <ol class="allergens__list">${Object.keys(ALLERGEN_LIST).map((n) => `<li value="${n}">${esc(ALLERGEN_LIST[n])}</li>`).join("")}</ol>
+        <p class="small">${esc(ALLERGEN_NOTE)}</p>
+      </div>`;
   }
 
   /* ---------- Oznam ---------- */
@@ -179,6 +203,7 @@
 
   /* ---------- Init ---------- */
   renderNotice();
+  renderAllergens();
   renderTabs();
   render();
   bindTabs();
