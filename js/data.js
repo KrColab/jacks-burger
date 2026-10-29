@@ -1,3 +1,24 @@
+/* =====================================================================
+   OZNAM NA ZAČIATKU STRÁNKY (sviatky, zmena otváracej doby, akcia…)
+   ---------------------------------------------------------------------
+   enabled : true  = oznam sa zobrazí, false = oznam je skrytý
+   type    : "info" (oranžový) | "warning" (žltý) | "closed" (červený)
+   title   : krátky nadpis (môže byť prázdny "")
+   text    : text oznamu
+   from/to : voliteľné, formát "RRRR-MM-DD" – oznam sa zobrazí len v tomto
+             období (nechaj "" ak nechceš obmedzenie)
+   closable: true = návštevník môže oznam zavrieť krížikom
+   ===================================================================== */
+const ANNOUNCEMENT = {
+  enabled: true,
+  type: "info",
+  title: "Oznam",
+  text: "V sviatok 24. 12. máme zatvorené. Ďakujeme za pochopenie.",
+  from: "",
+  to: "",
+  closable: true
+};
+
 /* Dáta prevzaté z https://www.jacksburger.sk – úpravy cien/položiek rob len tu. */
 const MENU = {
   burger: {

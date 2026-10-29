@@ -84,7 +84,6 @@
       <article class="item">
         <div class="item__top">
           <h3 class="item__name">${numbered ? `<span class="item__num">${idx + 1}.</span>` : ""}${esc(it.name)}${it.tag ? `<span class="tag">${esc(it.tag)}</span>` : ""}</h3>
-          <span class="item__dots"></span>
           <span class="item__price">${eur(it.price)}</span>
         </div>
         ${it.desc ? `<p class="item__desc">${esc(it.desc)}</p>` : ""}
@@ -156,7 +155,30 @@
     links.addEventListener("click", (e) => { if (e.target.tagName === "A") close(); });
   }
 
+  /* ---------- Oznam ---------- */
+  function renderNotice() {
+    const a = typeof ANNOUNCEMENT !== "undefined" ? ANNOUNCEMENT : null;
+    const box = $("#notice");
+    if (!a || !a.enabled || !a.text) { box.hidden = true; return; }
+    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Bratislava" }).format(new Date()); // RRRR-MM-DD
+    if ((a.from && today < a.from) || (a.to && today > a.to)) { box.hidden = true; return; }
+    const key = "oznam:" + a.title + "|" + a.text;
+    let dismissed = false;
+    try { dismissed = sessionStorage.getItem(key) === "1"; } catch (e) {}
+    if (dismissed) { box.hidden = true; return; }
+
+    const icons = { info: "📢", warning: "⚠️", closed: "⛔" };
+    box.className = "notice" + (a.type && a.type !== "info" ? " notice--" + a.type : "");
+    $("#noticeIcon").textContent = icons[a.type] || icons.info;
+    $("#noticeBody").innerHTML = (a.title ? `<strong>${esc(a.title)}</strong>` : "") + esc(a.text);
+    const x = $("#noticeX");
+    x.hidden = !a.closable;
+    x.onclick = () => { box.hidden = true; try { sessionStorage.setItem(key, "1"); } catch (e) {} };
+    box.hidden = false;
+  }
+
   /* ---------- Init ---------- */
+  renderNotice();
   renderTabs();
   render();
   bindTabs();
