@@ -73,6 +73,7 @@
   <main>
     <section class="hero">
       <div class="wrap hero__in">
+        <div class="hero__text">
         <p class="eyebrow">Vranov nad Topľou · donáška a osobný odber</p>
         <h1><span>Šťavnaté burgre.</span> <span class="grad">Chrumkavá pizza.</span> <span>Až k vašim dverám.</span></h1>
         <p class="lead">100% hovädzie mäso KRAVA &amp; CO, domáce žemle a domáce omáčky. Objednajte telefonicky a doručíme vám to po prvé dvere.</p>
@@ -83,15 +84,73 @@
         <div class="status" id="status" role="status" aria-live="polite">
           <span class="dot"></span><span id="statusText">Kontrolujem otváraciu dobu…</span>
         </div>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <svg class="burger" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" role="img" focusable="false">
+            <defs>
+              <linearGradient id="gBun" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FBBF24"/><stop offset=".55" stop-color="#F97316"/><stop offset="1" stop-color="#C2410C"/>
+              </linearGradient>
+              <linearGradient id="gBun2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F59E0B"/><stop offset="1" stop-color="#C2410C"/>
+              </linearGradient>
+              <linearGradient id="gPatty" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6B3A20"/><stop offset="1" stop-color="#3A1E0F"/>
+              </linearGradient>
+              <linearGradient id="gCheese" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FDE047"/><stop offset="1" stop-color="#EAB308"/>
+              </linearGradient>
+            </defs>
+            <ellipse cx="200" cy="300" rx="150" ry="12" fill="#000" opacity=".35"/>
+            <!-- spodná žemľa -->
+            <path d="M56 246H344C344 270 326 288 300 288H100C74 288 56 270 56 246Z" fill="url(#gBun2)"/>
+            <!-- placka -->
+            <rect x="46" y="196" width="308" height="52" rx="26" fill="url(#gPatty)"/>
+            <path d="M78 214q22 -8 44 0M158 222q22 -8 44 0M238 214q22 -8 44 0" stroke="#8A4B27" stroke-width="4" stroke-linecap="round" fill="none" opacity=".7"/>
+            <!-- syr -->
+            <path d="M50 190H350V204H318L302 234L286 204H132L116 222L100 204H50Z" fill="url(#gCheese)"/>
+            <!-- paradajka -->
+            <rect x="60" y="170" width="280" height="22" rx="11" fill="#EF4444"/>
+            <rect x="72" y="175" width="120" height="5" rx="2.5" fill="#fff" opacity=".22"/>
+            <!-- šalát -->
+            <path d="M46 170q14 -18 28 0t28 0t28 0t28 0t28 0t28 0t28 0t28 0t28 0t28 0t28 0v-10H46Z" fill="#22C55E"/>
+            <path d="M46 160H354V168H46Z" fill="#16A34A"/>
+            <!-- horná žemľa -->
+            <path d="M52 160C52 82 118 30 200 30S348 82 348 160Z" fill="url(#gBun)"/>
+            <path d="M90 100C104 66 140 48 176 44" stroke="#fff" stroke-opacity=".35" stroke-width="8" stroke-linecap="round" fill="none"/>
+            <g fill="#FEF3C7">
+              <ellipse cx="150" cy="82" rx="9" ry="5" transform="rotate(-25 150 82)"/>
+              <ellipse cx="205" cy="62" rx="9" ry="5" transform="rotate(10 205 62)"/>
+              <ellipse cx="256" cy="86" rx="9" ry="5" transform="rotate(35 256 86)"/>
+              <ellipse cx="116" cy="128" rx="9" ry="5" transform="rotate(-40 116 128)"/>
+              <ellipse cx="188" cy="112" rx="9" ry="5" transform="rotate(-10 188 112)"/>
+              <ellipse cx="244" cy="130" rx="9" ry="5" transform="rotate(20 244 130)"/>
+              <ellipse cx="300" cy="124" rx="9" ry="5" transform="rotate(45 300 124)"/>
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
 
     <section class="strip" aria-label="Naše výhody">
       <div class="wrap strip__in">
-        <div><strong>🥩 100 % hovädzie</strong><span>mäso KRAVA &amp; CO</span></div>
-        <div><strong>🍞 Domáce žemle</strong><span>a domáce omáčky</span></div>
-        <div><strong>🍕 Pizza 36 cm</strong><span>21 druhov</span></div>
-        <div><strong>🛵 Donáška</strong><span>po prvé dvere</span></div>
+        <div class="perk">
+          <span class="perk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 13c0-5 3.6-8.5 9-8.5 5 0 8 2.6 8 6.3 0 5.4-4.6 9.2-10.2 9.2C6 20 3.5 17.2 3.5 13z"/><path d="M8.2 12.6c1.6-2.2 4.2-2.8 6.4-1.5"/><circle cx="15.2" cy="15" r="1.7"/></svg></span>
+          <span class="perk__txt"><strong>100 % hovädzie</strong><span>mäso KRAVA &amp; CO</span></span>
+        </div>
+        <div class="perk">
+          <span class="perk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10.5a8 6 0 0 1 16 0z"/><path d="M3 14h18"/><path d="M5 17.2h14a2 2 0 0 1-2 2.3H7a2 2 0 0 1-2-2.3z"/></svg></span>
+          <span class="perk__txt"><strong>Domáce žemle</strong><span>a domáce omáčky</span></span>
+        </div>
+        <div class="perk">
+          <span class="perk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21 3.8 6.6a17 17 0 0 1 16.4 0z"/><path d="M5.6 9.8a14 14 0 0 1 12.8 0"/><circle cx="10" cy="12.2" r="1"/><circle cx="14" cy="12.6" r="1"/><circle cx="12" cy="16" r="1"/></svg></span>
+          <span class="perk__txt"><strong>Pizza 36 cm</strong><span>21 druhov</span></span>
+        </div>
+        <div class="perk">
+          <span class="perk__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M8.5 17h5l2-7.5h-3.2"/><path d="M15.2 9.5 16.6 5.5H19"/><path d="M4 12h6v3.2"/></svg></span>
+          <span class="perk__txt"><strong>Donáška</strong><span>po prvé dvere</span></span>
+        </div>
       </div>
     </section>
 
@@ -177,7 +236,10 @@
     </div>
   </footer>
 
-  <a class="fab" href="tel:+421951473213" aria-label="Zavolať a objednať">📞 Objednať</a>
+  <div class="stickybar" role="complementary" aria-label="Rýchla objednávka">
+    <div class="stickybar__status" id="barStatus"><span class="dot"></span><span id="barStatusText"></span></div>
+    <a class="btn btn--primary btn--sm" href="tel:+421951473213">📞 Objednať</a>
+  </div>
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>

@@ -33,13 +33,18 @@
     const { day, min } = bratislavaNow();
     const el = $("#status"), txt = $("#statusText");
     const h = HOURS[day];
+    const bar = $("#barStatus"), barTxt = $("#barStatusText");
+    const mirror = (cls) => {
+      el.classList.add(cls);
+      bar.classList.remove("open", "closed"); bar.classList.add(cls);
+      barTxt.textContent = txt.textContent;
+    };
     el.classList.remove("open", "closed");
     if (h.open && min >= toMin(h.open) && min < toMin(h.close)) {
-      el.classList.add("open");
       txt.textContent = `Práve otvorené · objednávky do ${h.close}`;
+      mirror("open");
       return;
     }
-    el.classList.add("closed");
     // nájdi najbližšie otvorenie
     for (let add = 0; add < 8; add++) {
       const d = (day + add) % 7, hh = HOURS[d];
@@ -47,6 +52,7 @@
       if (add === 0 && min >= toMin(hh.open)) continue;
       const when = add === 0 ? "dnes" : add === 1 ? "zajtra" : hh.day.toLowerCase();
       txt.textContent = `Momentálne zatvorené · otvárame ${when} o ${hh.open}`;
+      mirror("closed");
       return;
     }
   }
@@ -77,12 +83,20 @@
       </button>`).join("");
   }
 
+  function tagClass(t) {
+    if (/vegetari/i.test(t)) return " tag--veg";
+    if (/pikant/i.test(t)) return " tag--spicy";
+    if (/double/i.test(t)) return " tag--double";
+    if (/krava/i.test(t)) return " tag--brand";
+    return "";
+  }
+
   function itemHTML(it, cat, idx, numbered) {
     const menuLine = cat.menuExtra
-      ? `<div class="item__menu">Menu <b>${eur(it.price + cat.menuExtra)}</b> <span class="small">(+${eur(cat.menuExtra)})</span></div>` : "";
+      ? `<div class="item__menu"><span>Ako menu</span><span><b>${eur(it.price + cat.menuExtra)}</b><span class="small">(+${eur(cat.menuExtra)})</span></span></div>` : "";
     const tagList = it.tag ? [].concat(it.tag) : [];
     const tags = tagList.length
-      ? `<div class="item__tags">${tagList.map((t) => `<span class="tag${/vegetari/i.test(t) ? " tag--veg" : ""}">${esc(t)}</span>`).join("")}</div>` : "";
+      ? `<div class="item__tags">${tagList.map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join("")}</div>` : "";
     const al = Array.isArray(it.al) && it.al.length
       ? `<div class="item__al" title="${esc(it.al.map((n) => n + " – " + (ALLERGEN_LIST[n] || "")).join("; "))}">Alergény: <b>${it.al.join(", ")}</b></div>` : "";
     return `

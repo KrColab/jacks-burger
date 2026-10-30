@@ -10,7 +10,7 @@
    closable: true = návštevník môže oznam zavrieť krížikom
    ===================================================================== */
 const ANNOUNCEMENT = {
-  enabled: true,
+  enabled: false,
   type: "info",
   title: "Oznam",
   text: "V sviatok 24. 12. máme zatvorené. Ďakujeme za pochopenie.",
@@ -124,36 +124,50 @@ const MENU = {
     title: "Prílohy a omáčky",
     groups: [
       {
-        name: "Prílohy",
+        name: "Hranolky a smažené prílohy",
         items: [
           { name: "Hranolky", price: 3.0, desc: "250 g" },
           { name: "Crispers", price: 3.0, desc: "250 g" },
           { name: "Batatové hranolky", price: 4.5, desc: "250 g" },
-          { name: "Cibuľové krúžky", price: 4.0, desc: "10 ks" },
+          { name: "Cibuľové krúžky", price: 4.0, desc: "10 ks" }
+        ]
+      },
+      {
+        name: "Mäso a údeniny",
+        items: [
           { name: "Hovädzie mäso", price: 3.5, desc: "160 g" },
-          { name: "Karamelizovaná cibuľka", price: 2.0, desc: "80 g" },
+          { name: "Kuracie mäso", price: 1.5, desc: "80 g" },
+          { name: "Slanina", price: 1.0, desc: "50 g" },
+          { name: "Šunka", price: 1.0, desc: "50 g" },
+          { name: "Saláma", price: 1.0, desc: "50 g" },
           { name: "Pikantná saláma", price: 2.0, desc: "50 g" },
+          { name: "Klobása", price: 1.0, desc: "50 g" },
+          { name: "Prosciutto", price: 1.0, desc: "25 g" }
+        ]
+      },
+      {
+        name: "Syry",
+        items: [
+          { name: "Cheddar", price: 0.5, desc: "1 plátok" },
           { name: "Eidam", price: 1.5, desc: "50 g" },
           { name: "Hermelín", price: 1.5, desc: "50 g" },
-          { name: "Kuracie mäso", price: 1.5, desc: "80 g" },
           { name: "Mozzarella", price: 1.5, desc: "50 g" },
-          { name: "Niva", price: 1.5, desc: "50 g" },
-          { name: "Ananás", price: 1.0, desc: "50 g" },
-          { name: "Brokolica", price: 1.0, desc: "50 g" },
+          { name: "Niva", price: 1.5, desc: "50 g" }
+        ]
+      },
+      {
+        name: "Zelenina, ovocie a vajíčko",
+        items: [
+          { name: "Karamelizovaná cibuľka", price: 2.0, desc: "80 g" },
           { name: "Cibuľa", price: 1.0, desc: "50 g" },
-          { name: "Feferóny", price: 1.0, desc: "50 g" },
-          { name: "Klobása", price: 1.0, desc: "50 g" },
-          { name: "Kukurica", price: 1.0, desc: "50 g" },
-          { name: "Olivy", price: 1.0, desc: "50 g" },
           { name: "Paradajky", price: 1.0, desc: "50 g" },
-          { name: "Prosciutto", price: 1.0, desc: "25 g" },
-          { name: "Saláma", price: 1.0, desc: "50 g" },
-          { name: "Slanina", price: 1.0, desc: "50 g" },
           { name: "Šampióny", price: 1.0, desc: "50 g" },
-          { name: "Šunka", price: 1.0, desc: "50 g" },
-          { name: "Vajíčko", price: 1.0, desc: "1 ks" },
-          { name: "Cheddar", price: 0.5, desc: "1 plátok" },
-          { name: "Príbor so servítkou", price: 0.5, desc: "hygienicky balené, 1 ks" }
+          { name: "Kukurica", price: 1.0, desc: "50 g" },
+          { name: "Brokolica", price: 1.0, desc: "50 g" },
+          { name: "Olivy", price: 1.0, desc: "50 g" },
+          { name: "Feferóny", price: 1.0, desc: "50 g" },
+          { name: "Ananás", price: 1.0, desc: "50 g" },
+          { name: "Vajíčko", price: 1.0, desc: "1 ks" }
         ]
       },
       {
@@ -168,6 +182,12 @@ const MENU = {
           { name: "Majonéza", price: 2.0, desc: "50 g" },
           { name: "Kečup", price: 1.0, desc: "30 g" },
           { name: "Tatárska omáčka", price: 1.0, desc: "30 g" }
+        ]
+      },
+      {
+        name: "Ostatné",
+        items: [
+          { name: "Príbor so servítkou", price: 0.5, desc: "hygienicky balené, 1 ks" }
         ]
       }
     ]
