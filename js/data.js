@@ -65,7 +65,7 @@ const MENU = {
       { name: "Texas", price: 10.5, desc: "Domáca žemľa, chilli omáčka, lolo šalát, tortilla chips, paradajka, kyslá uhorka, čerstvá červená cibuľa, jalapeños, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca slanina, rukola, majonéza", tag: "Pikantný" },
       { name: "Kansas", price: 10.5, desc: "Domáca žemľa, domáca horčicovo-medová omáčka, poľníček, domáca slanina, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca karamelizovaná červená cibuľa, nakladané kukuričky" },
       { name: "Ohio", price: 10.5, desc: "Domáca žemľa, cesnaková omáčka, rukola, 2× domáca slanina, 160 g mleté hovädzie KRAVA&CO, cheddar, brusnicová omáčka, hranolky" },
-      { name: "Jack Daniel´s", price: 10.5, desc: "Domáca žemľa, poľníček, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca karamelizovaná červená cibuľka, volské oko, domáca slanina, rukola, originál BBQ omáčka JACK DANIEĹS" },
+      { name: "Jack Daniel´s", price: 10.5, desc: "Domáca žemľa, poľníček, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca karamelizovaná červená cibuľka, volské oko, domáca slanina, rukola, originál BBQ omáčka JACK DANIELS" },
       { name: "Nevada", price: 14.0, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, 2× 160 g mleté hovädzie KRAVA&CO, 2× cheddar, 4× domáca slanina, volské oko, majonéza", tag: "Double" },
       { name: "Vermont", price: 14.0, desc: "Domáca žemľa, domáca cesnaková omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, 4× domáca slanina, grilovaný hermelín, brusnicová omáčka, majonéza", tag: "Double" }
     ],
