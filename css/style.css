@@ -157,9 +157,8 @@ a:hover { text-decoration: underline; }
 .item__price { margin-left: auto; font: 700 22px/26px var(--head); letter-spacing: .01em; color: var(--gold); white-space: nowrap; }
 .item__desc { color: var(--muted); font-size: 13px; line-height: 20px; margin: 0; }
 
-/* odznaky */
-.item__tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { display: inline-flex; align-items: center; font: 700 11px/14px var(--font); letter-spacing: .06em; text-transform: uppercase; border-radius: 9999px; padding: 4px 10px; background: var(--elevated); color: var(--text-2); border: 1px solid var(--border-strong); }
+/* odznaky (inline vedľa názvu jedla) */
+.tag { display: inline-block; vertical-align: baseline; position: relative; top: -2px; margin: -4px 0 -4px 3px; white-space: nowrap; font: 700 10.5px/14px var(--font); letter-spacing: .06em; text-transform: uppercase; border-radius: 9999px; padding: 2px 9px; background: var(--elevated); color: var(--text-2); border: 1px solid var(--border-strong); }
 .tag--veg    { background: #14532D; color: #86EFAC; border-color: transparent; }
 .tag--spicy  { background: #7F1D1D; color: #FCA5A5; border-color: transparent; }
 .tag--double { background: var(--gold); color: #000; border-color: transparent; }
@@ -178,6 +177,13 @@ a:hover { text-decoration: underline; }
 .items--compact .item__price { font-size: 18px; }
 .empty { color: var(--muted); padding: 30px 0; }
 .foot-note { color: var(--muted); margin-top: 22px; font-size: 14px; }
+.sauces-box { margin-top: 24px; padding: 16px 20px; border-radius: var(--r-md); background: linear-gradient(135deg, rgba(249,115,22,.12), rgba(234,179,8,.06)); border: 1px solid rgba(249,115,22,.42); box-shadow: var(--glow); display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.sauces-box__title { display: inline-flex; align-items: center; gap: 9px; font: 700 17px/22px var(--head); text-transform: uppercase; letter-spacing: .03em; color: var(--gold); white-space: nowrap; }
+.sauces-box__title::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--flame); box-shadow: 0 0 8px var(--flame); }
+.sauces-box__list { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; min-width: 240px; }
+.sauce-chip { display: inline-block; padding: 5px 13px; border-radius: 9999px; background: rgba(15,15,17,.85); border: 1px solid rgba(234,179,8,.35); color: var(--text); font: 600 13px/18px var(--font); }
+.sauce-chip::first-letter { text-transform: uppercase; }
+.sauces-box__text { margin: 0; color: var(--text); font-weight: 500; font-size: 14px; }
 .note { color: var(--muted); }
 
 /* ---------- Alergény ---------- */

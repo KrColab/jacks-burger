@@ -96,20 +96,35 @@
       ? `<div class="item__menu"><span>Ako menu</span><span><b>${eur(it.price + cat.menuExtra)}</b><span class="small">(+${eur(cat.menuExtra)})</span></span></div>` : "";
     const tagList = it.tag ? [].concat(it.tag) : [];
     const tags = tagList.length
-      ? `<div class="item__tags">${tagList.map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join("")}</div>` : "";
+      ? " " + tagList.map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join(" ") : "";
     const al = Array.isArray(it.al) && it.al.length
       ? `<div class="item__al" title="${esc(it.al.map((n) => n + " – " + (ALLERGEN_LIST[n] || "")).join("; "))}">Alergény: <b>${it.al.join(", ")}</b></div>` : "";
     return `
       <article class="item">
         <div class="item__top">
-          <h3 class="item__name">${numbered ? `<span class="item__num">${idx + 1}.</span>` : ""}${esc(it.name)}</h3>
+          <h3 class="item__name">${numbered ? `<span class="item__num">${idx + 1}.</span>` : ""}${esc(it.name)}${tags}</h3>
           <span class="item__price">${eur(it.price)}</span>
         </div>
-        ${tags}
         ${it.desc ? `<p class="item__desc">${esc(it.desc)}</p>` : ""}
         ${menuLine}
         ${al}
       </article>`;
+  }
+
+  function footerHTML(text) {
+    const idx = text.indexOf(":");
+    if (idx > 0 && text.includes(",")) {
+      const label = text.slice(0, idx).trim();
+      const parts = text.slice(idx + 1).split(",").map((s) => s.trim()).filter(Boolean);
+      if (parts.length > 1) {
+        return `
+          <div class="sauces-box">
+            <div class="sauces-box__title">${esc(label)}</div>
+            <div class="sauces-box__list">${parts.map((p) => `<span class="sauce-chip">${esc(p)}</span>`).join("")}</div>
+          </div>`;
+      }
+    }
+    return `<div class="sauces-box"><p class="sauces-box__text">${esc(text)}</p></div>`;
   }
 
   function render() {
@@ -140,7 +155,7 @@
     } else {
       html += cat.groups.map((g) => `<h3 class="group-title">${esc(g.name)}</h3><div class="items items--compact">${g.items.map((it, i) => itemHTML(it, cat, i, false)).join("")}</div>`).join("");
     }
-    if (cat.footer) html += `<p class="foot-note">${esc(cat.footer)}</p>`;
+    if (cat.footer) html += footerHTML(cat.footer);
     if (active === "napoje") html += `<p class="foot-note">Alkohol predávame iba osobám starším ako 18 rokov.</p>`;
     out.innerHTML = html;
   }

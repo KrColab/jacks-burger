@@ -61,7 +61,7 @@ const MENU = {
       { name: "Oklahoma", price: 10.5, desc: "Domáca žemľa, sriracha mayo, ľadový šalát, červená cibuľa, 160 g mleté hovädzie mäso, cheddar, slaninka" },
       { name: "New York", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, paradajka, kyslá uhorka, rukola, domáca horčicovo-medová mayo" },
       { name: "Alabama", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, avokádo, paradajka, karamelizovaná červená cibuľa, 160 g mleté hovädzie KRAVA&CO, cheddar, volské oko, domáca slanina, majonéza" },
-      { name: "Kentucky", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, paradajka, kyslá uhorka, čerstvá červená cibuľa, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca slanina, rukola" },
+      { name: "Kentucky", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, paradajka, kyslá uhorka, čerstvá červená cibuľa, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca slanina, rukola, majonéza" },
       { name: "Texas", price: 10.5, desc: "Domáca žemľa, chilli omáčka, lolo šalát, tortilla chips, paradajka, kyslá uhorka, čerstvá červená cibuľa, jalapeños, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca slanina, rukola, majonéza", tag: "Pikantný" },
       { name: "Kansas", price: 10.5, desc: "Domáca žemľa, domáca horčicovo-medová omáčka, poľníček, domáca slanina, 160 g mleté hovädzie KRAVA&CO, cheddar, domáca karamelizovaná červená cibuľa, nakladané kukuričky" },
       { name: "Ohio", price: 10.5, desc: "Domáca žemľa, cesnaková omáčka, rukola, 2× domáca slanina, 160 g mleté hovädzie KRAVA&CO, cheddar, brusnicová omáčka, hranolky" },
@@ -80,22 +80,22 @@ const MENU = {
       { name: "Kukuricová", price: 9.9, desc: "tomat, oregáno, šunka, kukurica, syr, cesnakové okraje (740 g)" },
       { name: "Hawai", price: 9.9, desc: "tomat, oregáno, šunka, ananás, syr, cesnakové okraje (740 g)" },
       { name: "Funghi", price: 9.9, desc: "tomat, oregáno, šunka, čerstvé šampióny, syr, cesnakové okraje (720 g)" },
-      { name: "Olivová", price: 9.9, desc: "tomat, oregáno, šunka, olivy, syr, cesnakové okraje (730 g)" },
+      { name: "Olivová", price: 9.9, desc: "tomat, oregáno, šunka, zelené olivy, syr, cesnakové okraje (730 g)" },
       { name: "Brokolicová", price: 9.9, desc: "tomat, oregáno, šunka, brokolica, syr, cesnakové okraje (740 g)" },
       { name: "Gazdovská", price: 10.9, desc: "tomat, oregáno, saláma, klobása, slanina, cibuľa, vajíčko, feferóny, syr, cesnakové okraje (930 g)" },
       { name: "Sedliacka", price: 10.9, desc: "tomat, oregáno, klobása, feferóny, kuracie mäso, syr, mozzarella, cesnakové okraje (890 g)" },
       { name: "Hawai II", price: 10.9, desc: "tomat, oregáno, šunka, saláma, ananás, syr, niva, cesnakové okraje (920 g)" },
-      { name: "Talianska", price: 10.9, desc: "tomat, oregáno, saláma, čierne olivy, paradajky, syr, cesnakové okraje (890 g)" },
+      { name: "Talianska", price: 10.9, desc: "tomat, oregáno, saláma, zelené olivy, paradajky, syr, cesnakové okraje (890 g)" },
       { name: "Mexická", price: 10.9, desc: "tomat, oregáno, klobása, jalapeños, kukurica, fazuľa, cibuľa, syr, cesnakové okraje (900 g)", tag: "Pikantná" },
       { name: "Quattro formaggi", price: 10.9, desc: "tomat, oregáno, syr, mozzarella, niva, hermelín, cesnakové okraje (820 g)" },
       { name: "Kuracia", price: 10.9, desc: "tomat, oregáno, šunka, kukurica, kuracie mäso, brokolica, syr, cesnakové okraje (850 g)" },
       { name: "Labužnícka", price: 10.9, desc: "tomat, oregáno, šunka, 8× slanina, niva, syr, cesnakové okraje (800 g)" },
       { name: "Pikant", price: 10.9, desc: "tomat, oregáno, pikantná saláma, cibuľa, feferóny, syr, mozzarella, cesnakové okraje (830 g)", tag: "Pikantná" },
-      { name: "R'spécial", price: 10.9, desc: "tomat, oregáno, prosciutto, čerstvé šampióny, cherry paradajky, olivy, mokrá mozzarella, rukola, cesnakové okraje (680 g)" },
+      { name: "R'spécial", price: 10.9, desc: "tomat, oregáno, prosciutto, čerstvé šampióny, cherry paradajky, zelené olivy, mokrá mozzarella, rukola, cesnakové okraje (680 g)" },
       { name: "Delikates", price: 11.5, desc: "tomat, oregáno, saláma, klobása, slanina, paradajky, zelené olivy, čerstvé šampióny, syr, cesnakové okraje (940 g)" },
       { name: "Sweetchilli", price: 11.9, desc: "tomat, oregáno, eidam, pikantná saláma, ananás, niva, červená cibuľa, chilli nite, cesnakové okraje (890 g)", tag: "Pikantná" },
       { name: "Carbonara", price: 11.9, desc: "smotanový základ, oregáno, šunka, 2× vajíčko, 8× slanina, eidam, parmezán, cesnakové okraje (720 g)" },
-      { name: "Kráľovská", price: 11.9, desc: "tomat, oregáno, šunka, klobása, šampióny, zelené olivy, niva, jalapeño papričky, fazuľa, syr, cesnakové okraje (880 g)" },
+      { name: "Kráľovská", price: 11.9, desc: "tomat, oregáno, šunka, klobása, šampióny, zelené olivy, niva, jalapeño papričky, fazuľa, syr, cesnakové okraje (880 g)", tag: "Pikantná" },
       { name: "Prominent", price: 11.9, desc: "tomat, oregáno, pikantná saláma, eidam, jalapeño, gorgonzola, karamelizovaná cibuľa, rukola, cesnakové okraje (820 g)", tag: "Pikantná" }
     ]
   },
@@ -115,7 +115,9 @@ const MENU = {
   napoje: {
     title: "Nápoje",
     items: [
-      { name: "Pepsi, Mirinda, 7up", price: 2.0, desc: "plechovka 0,33 l" },
+      { name: "Pepsi", price: 2.0, desc: "plechovka 0,33 l" },
+      { name: "Mirinda", price: 2.0, desc: "plechovka 0,33 l" },
+      { name: "7up", price: 2.0, desc: "plechovka 0,33 l" },
       { name: "Pilsner Urquell", price: 3.0, desc: "sklo 0,5 l · alkoholický nápoj", tag: "18+" }
     ]
   },
