@@ -230,6 +230,31 @@
     box.hidden = false;
   }
 
+  /* ---------- Výber navigácie ---------- */
+  function bindNavPicker() {
+    const wrap = $("#navPick"), btn = $("#navPickBtn"), menu = $("#navPickMenu"), geo = $("#navGeoItem");
+    if (!wrap || !btn || !menu) return;
+    if (/Android/i.test(navigator.userAgent) && geo) geo.hidden = false;
+
+    const setOpen = (open) => {
+      menu.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+    };
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setOpen(menu.hidden);
+    });
+    menu.addEventListener("click", (e) => {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("click", (e) => {
+      if (!menu.hidden && !wrap.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.hidden) { setOpen(false); btn.focus(); }
+    });
+  }
+
   /* ---------- Init ---------- */
   renderNotice();
   renderAllergens();
@@ -237,6 +262,7 @@
   render();
   bindTabs();
   bindNav();
+  bindNavPicker();
   renderZones();
   renderHours();
   renderStatus();
