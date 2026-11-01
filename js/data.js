@@ -56,8 +56,8 @@ const MENU = {
     menuExtra: 3.0,
     menuInfo: "Burger menu = burger + 160 g crispers hranolky, 3 ks cibuľové krúžky a omáčka",
     items: [
-      { name: "Tennessee", price: 9.5, tag: "Vegetariánsky", desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, 120 g grilovaný hermelín, brusnicová omáčka, volské oko, rukola" },
-      { name: "Florida", price: 10.0, desc: "Domáca žemľa, domáca horčicovo-medová omáčka, lolo šalát, domáca karamelizovaná červená cibuľa, paradajka, 150 g marinovaný kurací steak, cheddar, grilovaný ananás", tag: "Kuracie" },
+      { name: "Tennessee", price: 9.5, tag: "Vegetariánsky", desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, 120 g grilovaný hermelín, brusnicová omáčka, volské oko, rukola, majonéza" },
+      { name: "Florida", price: 10.0, desc: "Domáca žemľa, domáca horčicovo-medová omáčka, lolo šalát, domáca karamelizovaná červená cibuľa, paradajka, 150 g marinovaný kurací steak, cheddar, rukola, grilovaný ananás", tag: "Kuracie" },
       { name: "Oklahoma", price: 10.5, desc: "Domáca žemľa, sriracha mayo, ľadový šalát, červená cibuľa, 160 g mleté hovädzie mäso, cheddar, slaninka" },
       { name: "New York", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, lolo šalát, 160 g mleté hovädzie KRAVA&CO, cheddar, paradajka, kyslá uhorka, rukola, domáca horčicovo-medová mayo" },
       { name: "Alabama", price: 10.5, desc: "Domáca žemľa, domáca BBQ omáčka, poľníček, avokádo, paradajka, karamelizovaná červená cibuľa, 160 g mleté hovädzie KRAVA&CO, cheddar, volské oko, domáca slanina, majonéza" },
