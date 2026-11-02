@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <title>Presmerovanie... | Jack´s Burger</title>
+  <meta name="robots" content="noindex">
+  <script>
+    (function() {
+      var p = window.location.pathname.toLowerCase();
+      var target = "/";
+      if (p.indexOf("/menu/burger") !== -1) {
+        target = "/?tab=burger#menu";
+      } else if (p.indexOf("/menu/pizza") !== -1) {
+        target = "/?tab=pizza#menu";
+      } else if (p.indexOf("/minutky") !== -1) {
+        target = "/?tab=minutky#menu";
+      } else if (p.indexOf("/prilohy") !== -1) {
+        target = "/?tab=prilohy#menu";
+      } else if (p.indexOf("/napoje") !== -1) {
+        target = "/?tab=napoje#menu";
+      } else if (p.indexOf("/menu") !== -1) {
+        target = "/#menu";
+      } else if (p.indexOf("/donaska") !== -1) {
+        target = "/#donaska";
+      } else if (p.indexOf("/kontakt") !== -1) {
+        target = "/#kontakt";
+      }
+      window.location.replace(target);
+    })();
+  </script>
+  <meta http-equiv="refresh" content="0; url=/">
+  <style>
+    body { background: #0F0F11; color: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    a { color: #F97316; text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <p>Presmerovávam na <a href="/">hlavnú stránku</a>...</p>
+</body>
+</html>
+

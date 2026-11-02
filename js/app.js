@@ -69,7 +69,8 @@
 
   /* ---------- Menu ---------- */
   const KEYS = ["burger", "pizza", "minutky", "prilohy", "napoje"];
-  let active = "burger";
+  const urlTab = new URLSearchParams(window.location.search).get("tab");
+  let active = KEYS.includes(urlTab) ? urlTab : "burger";
 
   function countOf(k) {
     const c = MENU[k];
