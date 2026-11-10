@@ -10,13 +10,13 @@
    closable: true = návštevník môže oznam zavrieť krížikom
    ===================================================================== */
 const ANNOUNCEMENT = {
-  enabled: false,
+  enabled: true,
   type: "info",
   title: "Oznam",
-  text: "V sviatok 24. 12. máme zatvorené. Ďakujeme za pochopenie.",
-  from: "",
-  to: "",
-  closable: true
+  text: "Dnes 10. 11. máme zatvorené. Ďakujeme za pochopenie.",
+  from: "2026-11-10",
+  to: "2026-11-10",
+  closable: false
 };
 
 /* =====================================================================
