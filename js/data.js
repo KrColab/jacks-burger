@@ -11,7 +11,7 @@
    ===================================================================== */
 const ANNOUNCEMENT = {
   enabled: true,
-  type: "info",
+  type: "closed",
   title: "Oznam",
   text: "Dnes 10. 11. máme zatvorené. Ďakujeme za pochopenie.",
   from: "2026-11-10",
