@@ -20,17 +20,39 @@
   /* ---------- Otváracia doba + stav ---------- */
   const ORDER = [1, 2, 3, 4, 5, 6, 0];
 
+  function bratislavaTodayYMD() {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Bratislava" }).format(new Date());
+  }
+  function addDaysYMD(ymd, add) {
+    const [y, m, d] = ymd.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1, d + add)).toISOString().slice(0, 10);
+  }
+  function isClosedByNotice(ymd) {
+    const a = typeof ANNOUNCEMENT !== "undefined" ? ANNOUNCEMENT : null;
+    if (!a || !a.enabled || a.type !== "closed") return false;
+    if (!a.from && !a.to) return ymd === bratislavaTodayYMD();
+    if (a.from && ymd < a.from) return false;
+    if (a.to && ymd > a.to) return false;
+    return true;
+  }
+
   function renderHours() {
     const { day } = bratislavaNow();
+    const closedToday = isClosedByNotice(bratislavaTodayYMD());
     $("#hours").innerHTML = ORDER.map((i) => {
       const h = HOURS[i];
-      const val = h.open ? `${h.open} – ${h.close}` : '<span class="closed-day">Zatvorené</span>';
-      return `<tr class="${i === day ? "today" : ""}"><td>${h.day}</td><td>${val}</td></tr>`;
+      const isToday = i === day;
+      const val = isToday && closedToday
+        ? '<span class="closed-day">Dnes zatvorené</span>'
+        : h.open ? `${h.open} – ${h.close}` : '<span class="closed-day">Zatvorené</span>';
+      return `<tr class="${isToday ? "today" : ""}"><td>${h.day}</td><td>${val}</td></tr>`;
     }).join("");
   }
 
   function renderStatus() {
     const { day, min } = bratislavaNow();
+    const todayYMD = bratislavaTodayYMD();
+    const closedToday = isClosedByNotice(todayYMD);
     const el = $("#status"), txt = $("#statusText");
     const h = HOURS[day];
     const bar = $("#barStatus"), barTxt = $("#barStatusText");
@@ -40,21 +62,24 @@
       barTxt.textContent = txt.textContent;
     };
     el.classList.remove("open", "closed");
-    if (h.open && min >= toMin(h.open) && min < toMin(h.close)) {
+    if (!closedToday && h.open && min >= toMin(h.open) && min < toMin(h.close)) {
       txt.textContent = `Práve otvorené · objednávky do ${h.close}`;
       mirror("open");
       return;
     }
-    // nájdi najbližšie otvorenie
-    for (let add = 0; add < 8; add++) {
+    // nájdi najbližšie otvorenie (preskoč dni zatvorené oznamom)
+    for (let add = 0; add < 14; add++) {
+      if (isClosedByNotice(addDaysYMD(todayYMD, add))) continue;
       const d = (day + add) % 7, hh = HOURS[d];
       if (!hh.open) continue;
       if (add === 0 && min >= toMin(hh.open)) continue;
       const when = add === 0 ? "dnes" : add === 1 ? "zajtra" : hh.day.toLowerCase();
-      txt.textContent = `Momentálne zatvorené · otvárame ${when} o ${hh.open}`;
+      txt.textContent = `${closedToday ? "Dnes zatvorené" : "Momentálne zatvorené"} · otvárame ${when} o ${hh.open}`;
       mirror("closed");
       return;
     }
+    txt.textContent = "Momentálne zatvorené";
+    mirror("closed");
   }
 
   /* ---------- Donáška ---------- */
@@ -214,7 +239,7 @@
     const a = typeof ANNOUNCEMENT !== "undefined" ? ANNOUNCEMENT : null;
     const box = $("#notice");
     if (!a || !a.enabled || !a.text) { box.hidden = true; return; }
-    const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Bratislava" }).format(new Date()); // RRRR-MM-DD
+    const today = bratislavaTodayYMD(); // RRRR-MM-DD
     if ((a.from && today < a.from) || (a.to && today > a.to)) { box.hidden = true; return; }
     const key = "oznam:" + a.title + "|" + a.text;
     let dismissed = false;
@@ -267,7 +292,7 @@
   renderZones();
   renderHours();
   renderStatus();
-  setInterval(() => { renderStatus(); renderHours(); }, 60000);
+  setInterval(() => { renderNotice(); renderStatus(); renderHours(); }, 60000);
   $("#year").textContent = new Date().getFullYear();
 })();
 

@@ -2,7 +2,7 @@
    OZNAM NA ZAČIATKU STRÁNKY (sviatky, zmena otváracej doby, akcia…)
    ---------------------------------------------------------------------
    enabled : true  = oznam sa zobrazí, false = oznam je skrytý
-   type    : "info" (oranžový) | "warning" (žltý) | "closed" (červený)
+   type    : "info" (oranžový) | "warning" (žltý) | "closed" (červený + prepne stav webu na Zatvorené)
    title   : krátky nadpis (môže byť prázdny "")
    text    : text oznamu
    from/to : voliteľné, formát "RRRR-MM-DD" – oznam sa zobrazí len v tomto
@@ -13,7 +13,7 @@ const ANNOUNCEMENT = {
   enabled: true,
   type: "closed",
   title: "Oznam",
-  text: "Dnes 10. 11. máme zatvorené. Ďakujeme za pochopenie.",
+  text: "Dnes 10.11.2026 máme zatvorené. Ďakujeme za pochopenie.",
   from: "2026-11-10",
   to: "2026-11-10",
   closable: false
