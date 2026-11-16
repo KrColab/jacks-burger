@@ -57,27 +57,6 @@ This keeps routine restaurant updates simple while preserving a reusable front-e
 └── CNAME               # Custom GitHub Pages domain
 ```
 
-## Run locally
-
-Because this is a static site, no package installation is required.
-
-```bash
-git clone https://github.com/KrColab/jacks-burger.git
-cd jacks-burger
-python3 -m http.server 8000
-```
-
-Open [http://localhost:8000](http://localhost:8000) in a browser.
-
-## Deploy
-
-The repository is ready for GitHub Pages:
-
-1. Open **Settings → Pages**.
-2. Select **Deploy from a branch**.
-3. Choose `main` and the `/ (root)` folder.
-4. Keep `CNAME` in the repository to use the custom domain.
-
 ## Why this project matters
 
 This project demonstrates how a small, dependency-free front end can solve a real business problem: make a large menu easy to browse, keep operational information accurate, and give customers a clear path to place an order. It combines practical UX, maintainable data modeling, responsive design and production deployment without unnecessary complexity.
