@@ -188,6 +188,7 @@ a:hover { text-decoration: underline; }
 
 /* ---------- Alergény ---------- */
 .allergens { margin: 0 0 24px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r-md); }
+.allergens[hidden] { display: none; }
 .allergens summary { cursor: pointer; padding: 14px 20px; font: 600 14px/20px var(--font); color: var(--text); list-style: none; display: flex; align-items: center; gap: 10px; }
 .allergens summary::-webkit-details-marker { display: none; }
 .allergens summary::before { content: "⚠️"; }
@@ -224,6 +225,8 @@ a:hover { text-decoration: underline; }
 .hours tr:last-child td { border: 0; }
 .hours tr.today td { color: var(--flame); }
 .hours .closed-day { color: var(--red); }
+.hours__date { color: var(--muted); font-weight: 400; font-size: 13px; margin-left: 4px; }
+.hours .special-hours { color: var(--gold); }
 .warn { margin: 16px 0 8px; color: #FCA5A5; font-weight: 600; }
 .small { color: var(--muted); font-size: 13px; line-height: 20px; }
 

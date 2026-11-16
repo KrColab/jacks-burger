@@ -36,25 +36,56 @@
     return true;
   }
 
+  function fmtShortDate(ymd) {
+    const [, m, d] = ymd.split("-").map(Number);
+    return `${d}. ${m}.`;
+  }
+  function effectiveHoursForDate(ymd, dayIdx) {
+    const base = HOURS[dayIdx];
+    const list = typeof SPECIAL_HOURS !== "undefined" && Array.isArray(SPECIAL_HOURS) ? SPECIAL_HOURS : [];
+    for (const s of list) {
+      if (!s) continue;
+      const match = s.date ? s.date === ymd : (s.from || s.to) && (!s.from || ymd >= s.from) && (!s.to || ymd <= s.to);
+      if (match) {
+        return { day: base.day, open: s.open || null, close: s.close || null, note: s.note || "", isSpecial: true };
+      }
+    }
+    if (isClosedByNotice(ymd)) {
+      return { day: base.day, open: null, close: null, note: "", isSpecial: true };
+    }
+    return { day: base.day, open: base.open, close: base.close, note: "", isSpecial: false };
+  }
+
   function renderHours() {
     const { day } = bratislavaNow();
-    const closedToday = isClosedByNotice(bratislavaTodayYMD());
+    const todayYMD = bratislavaTodayYMD();
+    const isoToday = day === 0 ? 7 : day;
     $("#hours").innerHTML = ORDER.map((i) => {
-      const h = HOURS[i];
       const isToday = i === day;
-      const val = isToday && closedToday
-        ? '<span class="closed-day">Dnes zatvorené</span>'
-        : h.open ? `${h.open} – ${h.close}` : '<span class="closed-day">Zatvorené</span>';
-      return `<tr class="${isToday ? "today" : ""}"><td>${h.day}</td><td>${val}</td></tr>`;
+      const isoRow = i === 0 ? 7 : i;
+      const rowYMD = addDaysYMD(todayYMD, isoRow - isoToday);
+      const eff = effectiveHoursForDate(rowYMD, i);
+      let label = esc(eff.day);
+      let val;
+      if (eff.isSpecial) {
+        label += ` <span class="hours__date">(${fmtShortDate(rowYMD)})</span>`;
+        if (!eff.open) {
+          val = `<span class="closed-day">${esc(eff.note || (isToday ? "Dnes zatvorené" : "Zatvorené"))}</span>`;
+        } else {
+          val = `<span class="special-hours">${esc(eff.open)} – ${esc(eff.close)}${eff.note ? " · " + esc(eff.note) : ""}</span>`;
+        }
+      } else {
+        val = eff.open ? `${esc(eff.open)} – ${esc(eff.close)}` : '<span class="closed-day">Zatvorené</span>';
+      }
+      return `<tr class="${isToday ? "today" : ""}"><td>${label}</td><td>${val}</td></tr>`;
     }).join("");
   }
 
   function renderStatus() {
     const { day, min } = bratislavaNow();
     const todayYMD = bratislavaTodayYMD();
-    const closedToday = isClosedByNotice(todayYMD);
+    const effToday = effectiveHoursForDate(todayYMD, day);
     const el = $("#status"), txt = $("#statusText");
-    const h = HOURS[day];
     const bar = $("#barStatus"), barTxt = $("#barStatusText");
     const mirror = (cls) => {
       el.classList.add(cls);
@@ -62,19 +93,18 @@
       barTxt.textContent = txt.textContent;
     };
     el.classList.remove("open", "closed");
-    if (!closedToday && h.open && min >= toMin(h.open) && min < toMin(h.close)) {
-      txt.textContent = `Práve otvorené · objednávky do ${h.close}`;
+    if (effToday.open && min >= toMin(effToday.open) && min < toMin(effToday.close)) {
+      txt.textContent = `Práve otvorené · objednávky do ${effToday.close}`;
       mirror("open");
       return;
     }
-    // nájdi najbližšie otvorenie (preskoč dni zatvorené oznamom)
+    // nájdi najbližšie otvorenie (preskoč zatvorené dni a sviatky)
     for (let add = 0; add < 14; add++) {
-      if (isClosedByNotice(addDaysYMD(todayYMD, add))) continue;
-      const d = (day + add) % 7, hh = HOURS[d];
-      if (!hh.open) continue;
-      if (add === 0 && min >= toMin(hh.open)) continue;
-      const when = add === 0 ? "dnes" : add === 1 ? "zajtra" : hh.day.toLowerCase();
-      txt.textContent = `${closedToday ? "Dnes zatvorené" : "Momentálne zatvorené"} · otvárame ${when} o ${hh.open}`;
+      const eff = effectiveHoursForDate(addDaysYMD(todayYMD, add), (day + add) % 7);
+      if (!eff.open) continue;
+      if (add === 0 && min >= toMin(eff.open)) continue;
+      const when = add === 0 ? "dnes" : add === 1 ? "zajtra" : eff.day.toLowerCase();
+      txt.textContent = `${effToday.isSpecial && !effToday.open ? "Dnes zatvorené" : "Momentálne zatvorené"} · otvárame ${when} o ${eff.open}`;
       mirror("closed");
       return;
     }
@@ -123,7 +153,8 @@
     const tagList = it.tag ? [].concat(it.tag) : [];
     const tags = tagList.length
       ? " " + tagList.map((t) => `<span class="tag${tagClass(t)}">${esc(t)}</span>`).join(" ") : "";
-    const al = Array.isArray(it.al) && it.al.length
+    const showAl = typeof SHOW_ALLERGENS === "undefined" || SHOW_ALLERGENS;
+    const al = showAl && Array.isArray(it.al) && it.al.length
       ? `<div class="item__al" title="${esc(it.al.map((n) => n + " – " + (ALLERGEN_LIST[n] || "")).join("; "))}">Alergény: <b>${it.al.join(", ")}</b></div>` : "";
     return `
       <article class="item">
@@ -225,8 +256,13 @@
 
   /* ---------- Alergény ---------- */
   function renderAllergens() {
-    if (typeof ALLERGEN_LIST === "undefined") { $("#allergens").hidden = true; return; }
-    $("#allergens").innerHTML = `
+    const box = $("#allergens");
+    if ((typeof SHOW_ALLERGENS !== "undefined" && !SHOW_ALLERGENS) || typeof ALLERGEN_LIST === "undefined") {
+      box.hidden = true;
+      return;
+    }
+    box.hidden = false;
+    box.innerHTML = `
       <summary>Alergény – zoznam a upozornenie</summary>
       <div class="allergens__body">
         <ol class="allergens__list">${Object.keys(ALLERGEN_LIST).map((n) => `<li value="${n}">${esc(ALLERGEN_LIST[n])}</li>`).join("")}</ol>

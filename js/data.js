@@ -20,6 +20,22 @@ const ANNOUNCEMENT = {
 };
 
 /* =====================================================================
+   ZMENENÁ OTVÁRACIA DOBA NA KONKRÉTNE DÁTUMY (sviatky, dovolenka…)
+   ---------------------------------------------------------------------
+   Zmeny sa v tabuľke „Otváracia doba“ automaticky zobrazia dopredu
+   počas celého týždňa (Pondelok – Nedeľa), do ktorého dátum spadá,
+   a riadi sa nimi aj stav „Práve otvorené / Zatvorené“.
+
+   Možnosti zápisu:
+   - Jeden deň : { date: "RRRR-MM-DD", open: null, close: null, note: "Zatvorené" }
+   - Rozsah dní: { from: "RRRR-MM-DD", to: "RRRR-MM-DD", open: null, close: null, note: "Zatvorené" }
+   - Zmenený čas: { date: "RRRR-MM-DD", open: "12:00", close: "18:00", note: "" }
+   ===================================================================== */
+const SPECIAL_HOURS = [
+  { from: "2026-12-24", to: "2026-12-27", open: null, close: null, note: "Zatvorené" }
+];
+
+/* =====================================================================
    ALERGÉNY (14 hlavných alergénov podľa nariadenia EÚ č. 1169/2011)
    ---------------------------------------------------------------------
    Pri každej položke menu pridaj pole `al` s číslami alergénov, napr.:
@@ -28,6 +44,9 @@ const ANNOUNCEMENT = {
    Položky bez poľa `al` nezobrazia nič – vypĺňaj ho podľa receptúr
    a údajov od dodávateľov (žemľa, omáčky, syry, obaly, olej…).
    ===================================================================== */
+
+const SHOW_ALLERGENS = false; // true = zobraziť alergény na stránke, false = dočasne skryť
+
 const ALLERGEN_LIST = {
   1: "Obilniny obsahujúce lepok (pšenica, raž, jačmeň, ovos)",
   2: "Kôrovce",
