@@ -13,9 +13,9 @@ const ANNOUNCEMENT = {
   enabled: true,
   type: "closed",
   title: "Oznam",
-  text: "Dnes 10.11.2026 máme zatvorené. Ďakujeme za pochopenie.",
-  from: "2026-11-10",
-  to: "2026-11-10",
+  text: "Dnes 17.11.2026 máme ZATVORENÉ. Ďakujeme za pochopenie.",
+  from: "2026-11-17",
+  to: "2026-11-17",
   closable: false
 };
 
@@ -32,7 +32,7 @@ const ANNOUNCEMENT = {
    - Zmenený čas: { date: "RRRR-MM-DD", open: "12:00", close: "18:00", note: "" }
    ===================================================================== */
 const SPECIAL_HOURS = [
-  { from: "2026-12-24", to: "2026-12-27", open: null, close: null, note: "Zatvorené" }
+  { from: "2026-11-17", to: "2026-11-17", open: null, close: null, note: "Zatvorené" }
 ];
 
 /* =====================================================================
